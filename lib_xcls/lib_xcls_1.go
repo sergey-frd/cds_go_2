@@ -16,8 +16,8 @@ import (
     //"encoding/gob"
 //    "path/filepath"
 
-    L "cds_go_1/lib"
-    S "cds_go_1/config"
+    L "cds_go_2/lib"
+    S "cds_go_2/config"
 
 )
 
@@ -67,14 +67,9 @@ func Load_Xcls( byteValues []byte) {
     //project_name := fastjson.GetString(byteValues, "Base", "project_name")
     //fmt.Printf("project_name = %s\n", project_name)
 
-
-
-
     // proj_dir, err := os.Getwd();  __err_panic(err) 
     // p("proj_dir proj_dir =", proj_dir)
     // excelFileName := filepath.Join(proj_dir,"tbl", excel_Name)
-
-
 
     //dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
     dbFileName, err := L.GetDbName(byteValues);  __err_panic(err) 

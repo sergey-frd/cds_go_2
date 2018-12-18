@@ -17,10 +17,10 @@ import (
 
     //"encoding/gob"
 
-    //L "cds_go_1/lib"
+    //L "cds_go_2/lib"
 
     //"encoding/json"
-    //S "cds_go_1/config"
+    //S "cds_go_2/config"
 
     // "math/rand"
 
@@ -38,7 +38,6 @@ import (
 //     rand.Seed(time.Now().Unix())
 //     return rand.Intn(max - min) + min
 // }
-
 //------------------------------------------------------------
 func GetExcelFileName( byteValues []byte) (excelFileName string, err error) {
 
@@ -58,10 +57,9 @@ func GetDbName( byteValues []byte) (dbFileName string, err error) {
     db_Name := fastjson.GetString(byteValues, "Base", "db_Name")
     proj_dir, err := os.Getwd();  __err_panic(err) 
     dbFileName = filepath.Join(proj_dir+"_db", db_Name)
-    fmt.Println("dbFileName =",dbFileName)
+    //fmt.Println("dbFileName =",dbFileName)
 
 	return dbFileName, err
-
 }
 
 //---------------------------------------------------------------

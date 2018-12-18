@@ -12,7 +12,7 @@ import (
 
     //"encoding/gob"
 
-    //L "cds_go_1/lib"
+    //L "cds_go_2/lib"
 
     //"encoding/json"
 
@@ -21,8 +21,8 @@ import (
 
 //    "path/filepath"
 //    "github.com/valyala/fastjson"
-//    L "cds_go_1/lib"
-    //S "cds_go_1/config"
+//    L "cds_go_2/lib"
+    //S "cds_go_2/config"
 
 )
 

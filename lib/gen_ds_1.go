@@ -18,8 +18,8 @@ import (
     "time"
     "math/rand"
 
-    S "cds_go_1/config"
-    //L "cds_go_1/lib"
+    S "cds_go_2/config"
+    //L "cds_go_2/lib"
 
 )
 

@@ -18,7 +18,7 @@ import (
 //  "time"
 //  "math/rand"
 //
-    S "cds_go_1/config"
+    S "cds_go_2/config"
 
 )
 

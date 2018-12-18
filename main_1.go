@@ -10,15 +10,15 @@ import (
     //"path"
     "path/filepath"
 
-    L "cds_go_1/lib"
-    X "cds_go_1/lib_xcls"
-    A "cds_go_1/lib_alloc"
-    G "cds_go_1/lib_gen"
-    I "cds_go_1/lib_init"
+    L "cds_go_2/lib"
+    X "cds_go_2/lib_xcls"
+    A "cds_go_2/lib_alloc"
+    G "cds_go_2/lib_gen"
+    I "cds_go_2/lib_init"
 
     //"encoding/json"
     //"encoding/gob"
-    //S "cds_go_1/config"
+    //S "cds_go_2/config"
 
 )
 
