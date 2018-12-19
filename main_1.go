@@ -12,7 +12,7 @@ import (
 
     L "cds_go_2/lib"
     X "cds_go_2/lib_xcls"
-    A "cds_go_2/lib_alloc"
+//    A "cds_go_2/lib_alloc"
     G "cds_go_2/lib_gen"
     I "cds_go_2/lib_init"
 
@@ -104,17 +104,7 @@ func main() {
         X.Load_Xcls( byteValues)
     }
 
-    //------------------------------------------------------------------------------
-    CASE_DB_PRINT_ALL := fastjson.GetString(byteValues, "Base", "CASE_DB_PRINT_ALL")
-    fmt.Printf("CASE_DB_PRINT_ALL = %s\n", CASE_DB_PRINT_ALL)
 
-    if CASE_DB_PRINT_ALL == "Y" {
-        p("********** CASE_DB_PRINT_ALL *********************")
-
-        //fmt.Println(" ----------  L.Buckets(dbFileName)  ---------- ")
-    	L.Buckets(dbFileName)
-
-    }
 
     //------------------------------------------------------------------------------
     CASE_LOAD_DICT := fastjson.GetString(byteValues, "Base", "CASE_LOAD_DICT")
@@ -159,11 +149,11 @@ func main() {
         p("CASE_GEN_ALL_FILES Gen_Lvl_Um")
         err = G.Gen_Lvl_Um(byteValues,data,);  __err_panic(err)
 
-        p("CASE_GEN_ALL_FILES Save_Data_Map")
+        p(" Save_Data_Map Free_Slots")
         //p("data[Free_Slots] =", data["Free_Slots"])
         err = L.Save_Data_Map(byteValues, "Free_Slots"  , data ); __err_panic(err)
 
-        p("CASE_GEN_ALL_FILES LoadDict2")
+        p("LoadDict2 Free_Slots")
         err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
         //err = L.Print_DB_Bucket(byteValues, "Free_Slots");             __err_panic(err)
 
@@ -235,46 +225,51 @@ func main() {
 
 
         TotalDict := make(map[string]map[string]float64) 
+
+        data["Paid_Slots"]  = make(map[string]string)
+
         //TotalDict["Ow_Day"]    = make(map[string]float64)
         TotalDict["Ow_Day_Ds"]  = make(map[string]float64)
         TotalDict["Sum_Ow_Ds"]  = make(map[string]float64)
         TotalDict["Paid_Ow_Ds"] = make(map[string]float64)
 
         err = I.Init_Um(byteValues,data,TotalDict,);  __err_panic(err)
+        err = L.Save_Data_Map(byteValues, "Paid_Slots"  , data ); __err_panic(err)
 
+    
 
     } // if CASE_INIT == "Y" {
 
     //------------------------------------------------------------------------------
 
-    CASE_UM_ALLOCATION := fastjson.GetString(byteValues, "Base", "CASE_UM_ALLOCATION")
-    fmt.Printf("**** CASE_UM_ALLOCATION = %s\n", CASE_UM_ALLOCATION)
-
-    if CASE_UM_ALLOCATION == "Y" {
-        p("CASE_UM_ALLOCATION STARTED")
-
-        err = L.LoadDict2(byteValues, data, "Digital_Signage");   __err_panic(err)
-        err = L.LoadDict2(byteValues, data, "User_Media"     );   __err_panic(err)
-
-        //err = L.LoadDict2(byteValues, data, "Ow_Um"      ); __err_panic(err)          
-        //err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  ); __err_panic(err)      
-        //err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
-        //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
-        err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
-
-        //fmt.Println("main data[Ow_Um]       =", data["Ow_Um"]);       __err_panic(err)
-        //fmt.Println("main data[Ow_UmNbDs]   =", data["Ow_UmNbDs"]);   __err_panic(err)
-        //fmt.Println("main data[Ow_UmNbDsTi] =", data["Ow_UmNbDsTi"]); __err_panic(err)
-        //fmt.Println("main data[Free_Slots]  =", data["Free_Slots"]);  __err_panic(err)
-
-        //p("CALL Alloc_Um ")
-        err = A.Alloc_Um(byteValues,data,);  __err_panic(err)
-
-
-
-    } else { // if CASE_UM_ALLOCATION
-        p("CASE_UM_ALLOCATION No")
-    } // if CASE_UM_ALLOCATION
+    // CASE_UM_ALLOCATION := fastjson.GetString(byteValues, "Base", "CASE_UM_ALLOCATION")
+    // fmt.Printf("**** CASE_UM_ALLOCATION = %s\n", CASE_UM_ALLOCATION)
+    // 
+    // if CASE_UM_ALLOCATION == "Y" {
+    //     p("CASE_UM_ALLOCATION STARTED")
+    // 
+    //     err = L.LoadDict2(byteValues, data, "Digital_Signage");   __err_panic(err)
+    //     err = L.LoadDict2(byteValues, data, "User_Media"     );   __err_panic(err)
+    // 
+    //     //err = L.LoadDict2(byteValues, data, "Ow_Um"      ); __err_panic(err)          
+    //     //err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  ); __err_panic(err)      
+    //     //err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
+    //     //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
+    //     err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
+    // 
+    //     //fmt.Println("main data[Ow_Um]       =", data["Ow_Um"]);       __err_panic(err)
+    //     //fmt.Println("main data[Ow_UmNbDs]   =", data["Ow_UmNbDs"]);   __err_panic(err)
+    //     //fmt.Println("main data[Ow_UmNbDsTi] =", data["Ow_UmNbDsTi"]); __err_panic(err)
+    //     //fmt.Println("main data[Free_Slots]  =", data["Free_Slots"]);  __err_panic(err)
+    // 
+    //     //p("CALL Alloc_Um ")
+    //     err = A.Alloc_Um(byteValues,data,);  __err_panic(err)
+    // 
+    // 
+    // 
+    // } else { // if CASE_UM_ALLOCATION
+    //     p("CASE_UM_ALLOCATION No")
+    // } // if CASE_UM_ALLOCATION
 
 
     //------------------------------------------------------------------------------
@@ -305,6 +300,20 @@ func main() {
     // 
     // 
     // }
+
+
+
+    //------------------------------------------------------------------------------
+    CASE_DB_PRINT_ALL := fastjson.GetString(byteValues, "Base", "CASE_DB_PRINT_ALL")
+    fmt.Printf("CASE_DB_PRINT_ALL = %s\n", CASE_DB_PRINT_ALL)
+
+    if CASE_DB_PRINT_ALL == "Y" {
+        p("********** CASE_DB_PRINT_ALL *********************")
+
+        //fmt.Println(" ----------  L.Buckets(dbFileName)  ---------- ")
+    	L.Buckets(byteValues,dbFileName)
+
+    }
 
 
 

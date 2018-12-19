@@ -19,7 +19,7 @@ import (
   "time"
 //  "math/rand"
 //
-//    L "cds_go_2/lib"
+    L "cds_go_2/lib"
     S "cds_go_2/config"
 )
 
@@ -88,6 +88,10 @@ func sum_Um_Ds(byteValues  []byte,
     fmt.Println("e = ",e)
     //---------------------------------------------------
     tbl_name   = "Free_Slots"
+
+
+    fmt.Println("Free_Slots start len =", len(data[tbl_name]))
+
     var keys []string
     for k, _ := range data[tbl_name] {
         keys = append(keys, k)
@@ -188,6 +192,9 @@ func sum_Um_Ds(byteValues  []byte,
                 //fmt.Println("sum = ",sum)
                 TotalDict["Paid_Ow_Ds"][key] += sum
                 total += sum
+                data["Paid_Slots"][string(k)] = fmt.Sprintf("%f", v)     
+                delete(data["Free_Slots"], string(k));
+ 
                 //fmt.Println("+++++",nnn,ods.Ow_day_ds_key, sum, TotalDict["Sum_Ow_Ds"][key], TotalDict["Paid_Ow_Ds"][key])
                 n++
         } else {
@@ -211,6 +218,15 @@ func sum_Um_Ds(byteValues  []byte,
     // err = Init_Um_Day(byteValues,data,TotalDict,um,);  __err_panic(err)
 
     fmt.Println(nnn,"total = ", total)
+
+    fmt.Println("Free_Slots END len =", len(data[tbl_name]))
+
+    err = L.Del_DB_Bucket(byteValues, "Free_Slots");          __err_panic(err)
+    err = L.Save_Data_Map(byteValues, "Free_Slots"  , data ); __err_panic(err)
+    err = L.LoadDict2(byteValues, data, "Free_Slots" );       __err_panic(err) 
+
+    fmt.Println("Free_Slots END 2 len =", len(data[tbl_name]))
+
     return  err
 
 } // func alloc_ow

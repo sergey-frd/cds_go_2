@@ -120,7 +120,7 @@ func SetupDB(dbname string) (*bolt.DB, error) {
 //}
 
 // Buckets prints a list of all buckets.
-func Buckets(path string) {
+func Buckets( byteValues []byte,path string) {
 
     if _, err := os.Stat(path); os.IsNotExist(err) {
         fmt.Println(err)
@@ -135,13 +135,15 @@ func Buckets(path string) {
     }
     defer db.Close()
 
+    FLAG_DB_PRINT_LEN_ONLY  := fastjson.GetInt(byteValues, "Base", "FLAG_DB_PRINT_LEN_ONLY")
+
     //fmt.Println(" ----------  Open ---------- ")
     err = db.View(func(tx *bolt.Tx) error {
         return tx.ForEach(func(name []byte, _ *bolt.Bucket) error {
 
 			sheet_Name := string(name)
             //fmt.Println(string(name))
-			fmt.Printf(" *********  %s  ************* \n", sheet_Name)
+			//fmt.Printf(" *********  %s  ************* \n", sheet_Name)
 
 			err = db.View(func(tx *bolt.Tx) error {
 				b := tx.Bucket([]byte(sheet_Name))
@@ -150,11 +152,13 @@ func Buckets(path string) {
 					return errors.New("Bucket not found")
 				}
 				//log.Printf("Value of %s is %s", "answer", b.Get([]byte("answer")))
-
+                n := 0 
 				for k, v := c.First(); k != nil; k, v = c.Next() {
+                    n++
 					//log.Printf("Value of %s is %s", k, v)
-					log.Printf(" %s => %s", k, v)
+					if FLAG_DB_PRINT_LEN_ONLY != 1 { log.Printf(" %s => %s", k, v) }
 				}
+				log.Printf(" %s => %d", sheet_Name, n) 
 				return nil
 			})
 
