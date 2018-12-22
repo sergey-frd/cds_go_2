@@ -62,20 +62,35 @@
         "Time_Slot_Busy_Pers": 85,
         "comment": "-------------------------------------------"
     },
-    "comment": "Paid_Slots Free_Slots Dictionary",
     "DB_Table_List": [
-                    "City",
-                    "Country",
-                    "Dictionary",
-                    "Digital_Signage",
-                    "Free_Slots",
-                    "Media",
-                    "Neighborhoods",
-                    "Owner",
-                    "Paid_Slots",
-                    "Price",
-                    "Time_Interval",
-                    "User",
-                    "User_Media"
-            ]
+            "City",
+            "Country",
+            "Dictionary",
+            "Digital_Signage",
+            "Free_Slots",
+            "Media",
+            "Neighborhoods",
+            "Owner",
+            "Paid_Slots",
+            "Price",
+            "Time_Interval",
+            "User",
+            "User_Media",
+    ],
+    "Map_Table_List": [
+            "City",
+            "Country",
+            "Dictionary",
+            "Digital_Signage",
+            "Media",
+            "Neighborhoods",
+            "Owner",
+            "Price",
+            "Time_Interval",
+            "User",
+            "User_Media",
+    ]
 }
+
+
+
