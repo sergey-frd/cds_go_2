@@ -93,7 +93,7 @@ func Print_Map(
             if FLAG_MAP_PRINT_LEN_ONLY != 1 { p(t,i,k,"=>", v) }
 
         }
-        p(t,"len =",len(data[t])) 
+        p("len",t,"=",len(data[t])) 
 
     } // for 
 

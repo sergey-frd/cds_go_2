@@ -15,7 +15,7 @@
         "CASE_LOAD_DICT":      "Y",
         "CASE_GEN_ALL_FILES": "Y",
         "CASE_DB_PRINT_TBL":  "nY",
-        "CASE_INIT":           "Y",
+        "CASE_INIT":           "nY",
         "CASE_UM_ALLOCATION": "nY",
         "comment": "-------------------------------------------",
         "CASE_DB_PRINT_ALL":       "Y",
@@ -35,12 +35,10 @@
         "Not_Used_Max_Slot_Counter": 3,
         "D_Sign_Counter": 3,
         "D_Sign_Used_Counter": 2,
-        "Max_Digital_Signage": 12,
         "Time_Interval_Counter": 24,        
         "User_Clip_Counter": 5,
         "User_Counter": 5,
         "Neighborhoods_Counter": 4,
-        "Max_Neighborhoods": 10,
         "User_Clip_Neighborhood_Counter": 3,
         "Owner_Counter": 5,
         "Code_Free_Users": 0,
@@ -51,6 +49,9 @@
         "Time_Add_Hour_Max": 1000,
         "Time_Add_Day_Min": 6,
         "Time_Add_Day_Max": 12,
+        "comment": "-------------------------------------------",
+        "Max_Neighborhoods": 5,
+        "Max_Digital_Signage": 10,
         "comment": "-------------------------------------------",
         "Dig_Sign_Max_Time_Interv_Price": 10000000,
         "Dig_Sign_Max_Total_Price": 100000,
@@ -79,6 +80,7 @@
                     "Price",
                     "Time_Interval",
                     "User",
-                    "User_Media"
+                    "User_Media",
+                    "Ds_Ti"
             ]
 }

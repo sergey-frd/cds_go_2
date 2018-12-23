@@ -191,17 +191,21 @@ func main() {
         //data["Ow_UmNbDsTi"] = make(map[string]string)
         //data["Payd_Slots"]  = make(map[string]string)
         data["Free_Slots"]  = make(map[string]string)
+        data["Ds_Ti"]       = make(map[string]string)
 
-        p("CASE_GEN_ALL_FILES Gen_Lvl_Um")
-        err = G.Gen_Lvl_Um(byteValues,data,);  __err_panic(err)
+        err = G.Gen_Ds_Ti(json_go,data,);  __err_panic(err)
+        err = L.Save_Data_Map(byteValues, "Ds_Ti"  , data ); __err_panic(err)
 
-        p(" Save_Data_Map Free_Slots")
-        //p("data[Free_Slots] =", data["Free_Slots"])
-        err = L.Save_Data_Map(byteValues, "Free_Slots"  , data ); __err_panic(err)
-
-        p("LoadDict2 Free_Slots")
-        err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
-        //err = L.Print_DB_Bucket(byteValues, "Free_Slots");             __err_panic(err)
+        // p("CASE_GEN_ALL_FILES Gen_Lvl_Um")
+        // err = G.Gen_Lvl_Um(byteValues,data,);  __err_panic(err)
+        // 
+        // p(" Save_Data_Map Free_Slots")
+        // //p("data[Free_Slots] =", data["Free_Slots"])
+        // err = L.Save_Data_Map(byteValues, "Free_Slots"  , data ); __err_panic(err)
+        // 
+        // p("LoadDict2 Free_Slots")
+        // err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
+        // //err = L.Print_DB_Bucket(byteValues, "Free_Slots");             __err_panic(err)
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //return 
@@ -267,6 +271,7 @@ func main() {
         //err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
         //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
         err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
+        err = L.LoadDict2(byteValues, data, "Ds_Ti" );      __err_panic(err) 
 
 
 
@@ -302,15 +307,17 @@ func main() {
         p("********** CASE_MAP_PRINT_ALL *********************")
         //err = L.Print_Map(byteValues,data,TotalDict,"City",);  __err_panic(err)
         err = L.Print_Map(json_go,data,);  __err_panic(err)
+        p("***************************************************")
     }
-    //fmt.Println(data["City"])
-    err = L.Print_Map_Table(json_go,data,"City");  __err_panic(err)
-    err = L.Print_Map_Table(json_go,data,"Neighborhoods");  __err_panic(err)
-    err = L.Print_Map_Table(json_go,data,"Digital_Signage");  __err_panic(err)
-    //err = L.Print_Map_Table(json_go,data,"Paid_Slots");  __err_panic(err)
+    // //fmt.Println(data["City"])
+    // err = L.Print_Map_Table(json_go,data,"City");  __err_panic(err)
+    // err = L.Print_Map_Table(json_go,data,"Neighborhoods");  __err_panic(err)
+    // err = L.Print_Map_Table(json_go,data,"Digital_Signage");  __err_panic(err)
+    // //err = L.Print_Map_Table(json_go,data,"Paid_Slots");  __err_panic(err)
     err = L.Print_Map_Table(json_go,data,"User_Media");  __err_panic(err)
 
 
+    p("***************************************************")
     p("**** main_1.go ENDED")
     return
 
