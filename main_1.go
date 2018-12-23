@@ -159,7 +159,7 @@ func main() {
 
         p("********** CASE_LOAD_DICT *********************")
     	//L.LoadDict(dbFileName,data)
-    	L.LoadDict(byteValues,data)
+    	L.LoadDict(byteValues,json_go,data)
     }
 
     //------------------------------------------------------------------------------
@@ -287,7 +287,6 @@ func main() {
     } // if CASE_INIT == "Y" {
 
     //------------------------------------------------------------------------------
-    //fmt.Println(data["City"])
 
     //------------------------------------------------------------------------------
     CASE_DB_PRINT_ALL := fastjson.GetString(byteValues, "Base", "CASE_DB_PRINT_ALL")
@@ -304,9 +303,10 @@ func main() {
         //err = L.Print_Map(byteValues,data,TotalDict,"City",);  __err_panic(err)
         err = L.Print_Map(json_go,data,);  __err_panic(err)
     }
-
-
-
+    //fmt.Println(data["City"])
+    err = L.Print_Map_Table(json_go,data,"City");  __err_panic(err)
+    err = L.Print_Map_Table(json_go,data,"Neighborhoods");  __err_panic(err)
+    err = L.Print_Map_Table(json_go,data,"Digital_Signage");  __err_panic(err)
 
 
     p("**** main_1.go ENDED")

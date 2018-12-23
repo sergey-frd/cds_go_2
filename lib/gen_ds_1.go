@@ -117,9 +117,13 @@ func Gen_Ds_Bucket(byteValues  []byte,
             //max_rand = temp_rand
 
 
-            rand.Seed(int64(time.Now().Nanosecond()))
-            max_rand = rand.Intn(d_Sign_Counter)
-            max_rand  += 1
+            //rand.Seed(int64(time.Now().Nanosecond()))
+            //max_rand = rand.Intn(d_Sign_Counter)
+            //max_rand  += 1
+
+            //func Random(min, max int) int {
+            max_rand = Random(1, d_Sign_Counter)
+
             //fmt.Println(  "max_rand =",max_rand)
 
 
@@ -136,6 +140,7 @@ func Gen_Ds_Bucket(byteValues  []byte,
                 rand_Owner_Key := rand.Intn(len_data_Owner)
                 //fmt.Println("rand_Owner_Key =",rand_Owner_Key)
                 ID_Owner = keys_Owner[rand_Owner_Key]
+
                 //fmt.Println("ID_Owner =",ID_Owner)
 
                 // Owner_Name = data["Owner"][ID_Owner]
