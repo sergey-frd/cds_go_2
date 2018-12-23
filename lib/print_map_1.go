@@ -57,7 +57,7 @@ func Print_Map_Table(
         if FLAG_MAP_PRINT == 1 { p(t,i,k,"=>", v) }
 
     } // for 
-    p(t,"=>",len(data[t])) 
+    p(t,"len =",len(data[t])) 
 
 
     return err
@@ -93,7 +93,7 @@ func Print_Map(
             if FLAG_MAP_PRINT_LEN_ONLY != 1 { p(t,i,k,"=>", v) }
 
         }
-        p(t,"=>",len(data[t])) 
+        p(t,"len =",len(data[t])) 
 
     } // for 
 

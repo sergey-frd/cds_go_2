@@ -172,11 +172,11 @@ func main() {
 
         //.................................................
         p("CASE_GEN_ALL_FILES Digital_Signage")
-        err = L.Gen_Ds_Bucket(byteValues, "Digital_Signage",data); __err_panic(err)
+        err = L.Gen_Ds_Bucket(json_go,byteValues, "Digital_Signage",data); __err_panic(err)
         err = L.LoadDict2(byteValues, data, "Digital_Signage");    __err_panic(err)
 
         p("CASE_GEN_ALL_FILES User_Media")
-        err = L.Gen_Um_Bucket(byteValues, "User_Media", data);     __err_panic(err)
+        err = L.Gen_Um_Bucket(json_go,byteValues, "User_Media", data);     __err_panic(err)
         err = L.LoadDict2(    byteValues, data, "User_Media");     __err_panic(err)
 
         //.................................................
@@ -307,6 +307,8 @@ func main() {
     err = L.Print_Map_Table(json_go,data,"City");  __err_panic(err)
     err = L.Print_Map_Table(json_go,data,"Neighborhoods");  __err_panic(err)
     err = L.Print_Map_Table(json_go,data,"Digital_Signage");  __err_panic(err)
+    //err = L.Print_Map_Table(json_go,data,"Paid_Slots");  __err_panic(err)
+    err = L.Print_Map_Table(json_go,data,"User_Media");  __err_panic(err)
 
 
     p("**** main_1.go ENDED")

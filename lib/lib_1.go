@@ -184,7 +184,9 @@ func LoadDict(byteValues []byte,
     Clip_4_ALL_Country:= json_go.Base.Clip4ALLCountry 
     Clip_Code_Country := json_go.Base.ClipCodeCountry 
     Clip_Code_City    := json_go.Base.ClipCodeCity    
+    MaxNeighborhoods  := json_go.Base.MaxNeighborhoods    
 
+    var nn       int
     var ct       S.City_STC
     var Nb       S.Neighborhoods_STC
 
@@ -215,7 +217,7 @@ func LoadDict(byteValues []byte,
 
             //................................................
             case "Neighborhoods":
-
+                nn = 0 
                 data[sheet_Name] = make(map[string]string)
                 err = db.View(func(tx *bolt.Tx) error {
                     b := tx.Bucket([]byte(sheet_Name))
@@ -241,6 +243,10 @@ func LoadDict(byteValues []byte,
 
                         data[sheet_Name][string(k[:])] = string(v[:])
 
+                        nn++
+                        if nn >= MaxNeighborhoods {
+                            break	
+                        }
 
                     }
                     return nil 
