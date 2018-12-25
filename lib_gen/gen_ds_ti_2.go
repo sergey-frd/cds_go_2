@@ -1,7 +1,7 @@
 package lib_gen
 
 import (   
-    "fmt"
+//    "fmt"
 //        "math"
         "strconv"
         "time"
@@ -73,7 +73,7 @@ func Gen_Ds_Ti2(
     ) (err error) {
 
 
-    p := fmt.Println
+    //p := fmt.Println
     // var err         error
     //var total       float64
 
@@ -88,10 +88,10 @@ func Gen_Ds_Ti2(
     var keys []string
 
 
-    Time_Interval_Counter  := json_go.Base.TimeIntervalCounter
     TimeAddDayMin          := json_go.Base.TimeAddDayMin
     TimeAddDayMax          := json_go.Base.TimeAddDayMax
-    p("Time_Interval_Counter =",Time_Interval_Counter)
+    Time_Interval_Counter  := json_go.Base.TimeIntervalCounter
+    //p("Time_Interval_Counter =",Time_Interval_Counter)
 
     inxArr := make([]int, Time_Interval_Counter)
 
@@ -202,14 +202,14 @@ func Gen_Ds_Ti2(
             // } // for h := 0; h < diff_days; h++ 
 
             //!!!!!!!!!!!!!!!!!!!!
-            break
+            //break
 
             c_day  = c_day.Add(time.Hour*24)
 
         } // for d := 0; d < diff_days; d++ 
         
         //!!!!!!!!!!!!!!!!!!!!
-        break
+        //break
 
     } // for _, k := range keys 
 

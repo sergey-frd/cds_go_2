@@ -35,7 +35,7 @@ func Random(min, max int) int {
     //return r1.Intn(max - min) + min
 
     rand.Seed(int64(time.Now().Nanosecond()))
-    return rand.Intn(max - min) + min
+    return rand.Intn(max - min) + min 
 
 }
 

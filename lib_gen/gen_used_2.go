@@ -1,7 +1,7 @@
 package lib_gen
 
 import (   
-     "fmt"
+//     "fmt"
  	"sort"
      "encoding/json"
 // //        "math"
@@ -20,8 +20,9 @@ import (
 // //  //"encoding/gob"
 // //  
 // //  "math/rand"
+
 // 
-//     L "cds_go_2/lib"
+     L "cds_go_2/lib"
      S "cds_go_2/config"
 
 )
@@ -36,12 +37,12 @@ func Gen_Used_Ti(
     ) (err error) {
 
 
-    p := fmt.Println
+    //p := fmt.Println
     // var err         error
     //var total       float64
 
     //var ct   S.City_STC
-    //var Ds   S.Digital_Signage_STC
+    var Ds   S.Digital_Signage_STC
     var bti  S.Base_TI_STC
     //var odu  S.Ow_Ds_Used_STC
     //var dst  S.DS_TI_STC
@@ -50,7 +51,16 @@ func Gen_Used_Ti(
 
     //var iCounter int
 
-    var keys []string
+    var      keys []string
+    var      Slot       int
+    var      Total_Slot int
+    var      Total_Cost float64
+
+    var    All_Used      int
+    var    New_Free_Slot int
+    var    Start_Indx    int
+    var    Interv_Count  int
+    var    Need_Used     int
 
 
     // TimeAddDayMin  := json_go.Base.TimeAddDayMin
@@ -81,12 +91,18 @@ func Gen_Used_Ti(
     // odu.Owdaydskey.UsMd.IDMedia = strconv.Itoa(CodeFreeClips)  
     // //.............................
 
+
+    Time_Interval_Counter  := json_go.Base.TimeIntervalCounter
+    inxArr := make([]int, Time_Interval_Counter)
+
+
     tblname   := "Base_Ti"
     for k, _ := range data[tblname] {
         keys = append(keys, k)
     } // for k, v
     sort.Strings(keys)
     nnn := 0
+    nn := 0
     for _, k := range keys  {
       bytk := []byte(k)
       err = json.Unmarshal(bytk, &bti.Base_ti_key);  __err_panic(err)
@@ -104,11 +120,79 @@ func Gen_Used_Ti(
       //odu.Owdaydskey.CnCtNbDs  = dst.Dstikey.CnCtNbDs
 
 
+        All_Used      = L.Random(0,3)
+        New_Free_Slot = L.Random(2,7)
+        Start_Indx    = L.Random(0,11)
+        Interv_Count  = L.Random(2,12)
+        Need_Used     = L.Random(0,5)
 
-        p(nnn,"bti =", bti)
+        if Need_Used == 0 { continue }
 
-       //!!!!!!!!!!!!!!!!!!!!
-       break
+        nn  += 1
+
+        //p(nn,nnn,All_Used,Start_Indx,Interv_Count,"bti =", New_Free_Slot, bti)
+
+        Ds.CnCtNbDs = bti.Base_ti_key.CnCtNbDs
+
+        ds_encoded, err := json.Marshal(Ds.CnCtNbDs)
+        __err_panic(err)
+
+        //ds_encoded, err := json.Marshal(Ds.CnCtNbDs);  
+        //p(nnn,"ds_encoded =", ds_encoded)
+        //p(nnn,"string ds_encoded =", string(ds_encoded))
+        ds_value:= data["Digital_Signage"][string(ds_encoded)]
+        //p(nnn,"ds_value =", ds_value)
+        byt_dsv := []byte(ds_value)
+        err = json.Unmarshal(byt_dsv, &Ds.DsVal)
+        __err_panic(err)
+        //p(nnn,"Ds.DsVal =", Ds.DsVal)
+
+        //p(nnn,"Ds =", Ds)
+
+        bti.Base_ti_val.Total_Cost     = 0 
+        Total_Slot = 0
+        Total_Cost = 0
+
+        inxArr = bti.Base_ti_val.Index
+        for h := 0; h < Time_Interval_Counter; h++ {
+            //Slot      = 1
+            if All_Used == 1 {
+                inxArr[h] = 6
+            } else { // if All_Used
+
+                if Start_Indx <= h && Start_Indx+Interv_Count >= h {
+                //if Start_Indx <= h {
+                    inxArr[h] = New_Free_Slot
+                    //p(h,Start_Indx,Start_Indx+Interv_Count,"inxArr[h] =", inxArr[h])
+                } //if Start_Indx 
+            } // if All_Used
+
+            Slot = inxArr[h]
+            slots,slot_price,err := Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
+            Total_Slot +=  slots
+            Total_Cost +=  slot_price
+
+        } // for h := 0; h < diff_days; h++ 
+
+        bti.Base_ti_val.Index      = inxArr 
+        //bti.Base_ti_val.Total_Slot = Time_Interval_Counter * 6
+        bti.Base_ti_val.Total_Slot = Total_Slot
+        bti.Base_ti_val.Total_Cost = Total_Cost
+
+
+        enc_Base_ti_key, err := json.Marshal(bti.Base_ti_key); __err_panic(err)
+        enc_Base_ti_val, err := json.Marshal(bti.Base_ti_val); __err_panic(err)
+
+        //p("dst =", dst)
+        //dst_Index  := strconv.Itoa(dst.Index)
+        data["Base_Ti"][string(enc_Base_ti_key)]  = string(enc_Base_ti_val)
+
+
+        //p(nn,nnn,All_Used,Start_Indx,Interv_Count,"upd =", New_Free_Slot, bti)
+
+
+        //!!!!!!!!!!!!!!!!!!!!
+        //if nnn >= 5 { break }
 
     } // for , k := range keys 
 

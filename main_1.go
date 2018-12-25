@@ -111,24 +111,24 @@ func main() {
     //p(arr)
 
 
-    type Server struct {
-        id  int
-        ips []int
-    }
-    
-    ia := make([]int, 3)
-    fmt.Println("emp:", ia)
-
-
-    ia[0] = 0
-    ia[1] = 1
-    ia[2] = 2
-    fmt.Println("set:", ia)
-    fmt.Println("get: ia[2]", ia[2])
-
-    o := 5
-    server2 := Server{id: o, ips: ia}
-    fmt.Println(server2)
+    // type Server struct {
+    //     id  int
+    //     ips []int
+    // }
+    // 
+    // ia := make([]int, 3)
+    // fmt.Println("emp:", ia)
+    // 
+    // 
+    // ia[0] = 0
+    // ia[1] = 1
+    // ia[2] = 2
+    // fmt.Println("set:", ia)
+    // fmt.Println("get: ia[2]", ia[2])
+    // 
+    // o := 5
+    // server2 := Server{id: o, ips: ia}
+    // fmt.Println(server2)
 
 
 
@@ -233,11 +233,12 @@ func main() {
         data["Base_Ti"]     = make(map[string]string)
 
         err = G.Gen_Ds_Ti2(json_go,data,);  __err_panic(err)
-        err = L.Save_Data_Map(byteValues, "Base_Ti"  , data ); __err_panic(err)
+        //err = L.Save_Data_Map(byteValues, "Base_Ti"  , data ); __err_panic(err)
 
         err = G.Gen_Used_Ti(json_go,data,);  __err_panic(err)
         
-        //err = L.Save_Data_Map(byteValues, "Ds_Ti"  , data ); __err_panic(err)
+        err = L.Save_Data_Map(byteValues, "Base_Ti"  , data ); __err_panic(err)
+        err = L.LoadDict2(    byteValues, data, "Base_Ti");     __err_panic(err)
 
         // p("CASE_GEN_ALL_FILES Gen_Lvl_Um")
         // err = G.Gen_Lvl_Um(byteValues,data,);  __err_panic(err)
@@ -314,7 +315,7 @@ func main() {
         //err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
         //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
         err = L.LoadDict2(byteValues, data, "Free_Slots"  ); __err_panic(err)     
-        err = L.Save_Data_Map(byteValues, "Base_Ti", data ); __err_panic(err)
+        err = L.LoadDict2(    byteValues, data, "Base_Ti");     __err_panic(err)
 
 
 
@@ -357,7 +358,8 @@ func main() {
     // err = L.Print_Map_Table(json_go,data,"Neighborhoods");  __err_panic(err)
     // err = L.Print_Map_Table(json_go,data,"Digital_Signage");  __err_panic(err)
     // //err = L.Print_Map_Table(json_go,data,"Paid_Slots");  __err_panic(err)
-    err = L.Print_Map_Table(json_go,data,"User_Media");  __err_panic(err)
+    // err = L.Print_Map_Table(json_go,data,"User_Media");  __err_panic(err)
+       err = L.Print_Map_Table(json_go,data,"Base_Ti");  __err_panic(err)
 
 
     p("***************************************************")
