@@ -124,8 +124,8 @@ func Gen_Used_Ti(
         Need_Used     = L.Random(0,5)
 
         High_Slot     = L.Random(0,3)
-        New_Free_Slot = L.Random(2,7)
-        All_Used      = L.Random(1,5)
+        New_Free_Slot = L.Random(0,6)
+        All_Used      = L.Random(0,5)
         Start_Indx    = L.Random(0,11)
         Interv_Count  = L.Random(2,12)
         Need_Used     = L.Random(0,5)

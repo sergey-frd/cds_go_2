@@ -96,39 +96,26 @@ func main() {
     p("")
     p("")
 
-    //type Example struct {
-    //    id  int
-    //    text  []string
-    //}
-    //
-    //var arr = []Example{
-    //  id  int(5)
-    //  Example{
-    //   []string{"a", "b", "c"},
-    //  },
-    //}
-    //
-    //p(arr)
+    var Um_nbds  S.Um_NbDs_STC
+    
+    Um_nbds.Slot_Price             = 12.34
+    Um_nbds.Um_nbds_key.Ds_keys = make([]S.Digital_Signage_KEY,10)
+    Um_nbds.Um_nbds_key.Ds_keys[1].ID_Digital_Signage      = "1"
+    Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage      = "5"
+    Um_nbds.Um_nbds_key.Ds_keys[0].ID_Owner                = "7"
+    Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.ID_Neighborhoods = "8"
+    Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.CnCt.ID_Country  = "56" 
+    Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.CnCt.ID_City     = "78" 
+    Um_nbds.Um_nbds_key.UsMd.ID_User                       = "178" 
+    Um_nbds.Um_nbds_key.UsMd.ID_Media                      = "234" 
 
+    p("Um_nbds =", Um_nbds)
+    p("Um_nbds.Um_nbds_key.Ds_keys =", Um_nbds.Um_nbds_key.Ds_keys)
+    p("Um_nbds.Um_nbds_key.Ds_keys[0] =", Um_nbds.Um_nbds_key.Ds_keys[0])
+    p("Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage =", Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage)
 
-    // type Server struct {
-    //     id  int
-    //     ips []int
-    // }
-    // 
-    // ia := make([]int, 3)
-    // fmt.Println("emp:", ia)
-    // 
-    // 
-    // ia[0] = 0
-    // ia[1] = 1
-    // ia[2] = 2
-    // fmt.Println("set:", ia)
-    // fmt.Println("get: ia[2]", ia[2])
-    // 
-    // o := 5
-    // server2 := Server{id: o, ips: ia}
-    // fmt.Println(server2)
+    //p("Um_nbds.Um_nbds_key.Ds_keys len=", len(Um_nbds.Um_nbds_key.Ds_keys))
+    // return
 
 
 
@@ -240,8 +227,7 @@ func main() {
         err = L.Save_Data_Map(byteValues, "Base_Ti"  , data ); __err_panic(err)
         err = L.LoadDict2(    byteValues, data, "Base_Ti");     __err_panic(err)
 
-        // p("CASE_GEN_ALL_FILES Gen_Lvl_Um")
-        // err = G.Gen_Lvl_Um(byteValues,data,);  __err_panic(err)
+        err = G.Gen_Lvl_Um2(byteValues,data,);  __err_panic(err)
         // 
         // p(" Save_Data_Map Free_Slots")
         // //p("data[Free_Slots] =", data["Free_Slots"])
@@ -359,7 +345,7 @@ func main() {
     // err = L.Print_Map_Table(json_go,data,"Digital_Signage");  __err_panic(err)
     // //err = L.Print_Map_Table(json_go,data,"Paid_Slots");  __err_panic(err)
     // err = L.Print_Map_Table(json_go,data,"User_Media");  __err_panic(err)
-       err = L.Print_Map_Table(json_go,data,"Base_Ti");  __err_panic(err)
+    // err = L.Print_Map_Table(json_go,data,"Base_Ti");  __err_panic(err)
 
 
     p("***************************************************")

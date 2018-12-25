@@ -3,6 +3,20 @@ package strct
 import (
         "time"
 )
+
+
+//.............................
+type Um_NbDs_KEY   struct {
+    UsMd          User_Media_KEY
+    Ds_keys[]     Digital_Signage_KEY
+}
+
+type Um_NbDs_STC   struct {
+    Um_nbds_key     Um_NbDs_KEY
+    Slot_Price      float64
+}
+
+
 //.............................
 type Ymd_KEY   struct {
     Year       int           
@@ -20,7 +34,7 @@ type Ymdh_KEY   struct {
 
 //.............................
 type Base_Ti_Val   struct {
-    Index[]int
+    Index[]       int
     Total_Slot    int
     Total_Cost    float64
 }
