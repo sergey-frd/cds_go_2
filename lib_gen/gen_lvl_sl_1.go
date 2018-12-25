@@ -83,7 +83,6 @@ func Gen_Lvl_Sl(byteValues  []byte,
     
     n := 0
     for i := 1; i <= Slots; i++ {
-
         n++
 
         //price := string(data["Price"][strconv.Itoa(i)])

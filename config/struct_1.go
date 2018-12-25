@@ -3,6 +3,12 @@ package strct
 import (
         "time"
 )
+//.............................
+type Ymd_KEY   struct {
+    Year       int           
+    Month      int    
+    Day        int 
+}
 
 //.............................
 type Ymdh_KEY   struct {
@@ -12,6 +18,38 @@ type Ymdh_KEY   struct {
     Hour       int           
 }
 
+//.............................
+type Base_Ti_Val   struct {
+    Index[]int
+    Total_Slot    int
+    Total_Cost    float64
+}
+
+//.............................
+type Base_Ti_KEY   struct {
+    CnCtNbDs  Digital_Signage_KEY
+    Ymd_key  Ymd_KEY 
+}
+ 
+//.............................
+type Base_TI_STC   struct {
+    Base_ti_key   Base_Ti_KEY
+    Base_ti_val   Base_Ti_Val
+}
+
+//.............................
+type Ow_Ds_Used_KEY   struct {
+    UsMd       User_Media_KEY
+    CnCtNbDs   Digital_Signage_KEY
+    Index      int  
+    Start_Ymdh Ymdh_KEY 
+    End_Ymdh   Ymdh_KEY 
+}
+
+type Ow_Ds_Used_STC   struct {
+    Ow_day_ds_key Ow_Day_Ds_KEY
+    Total_Cost    float64
+}
 
 //.............................
 type Ds_Ti_KEY   struct {
@@ -36,12 +74,6 @@ type Ow_Day_Ds_STC   struct {
     Total_Cost    float64
 }
 
-//.............................
-type Ymd_KEY   struct {
-    Year       int           
-    Month      int    
-    Day        int 
-}
 
 //.............................
 type Ow_Day_KEY struct {
