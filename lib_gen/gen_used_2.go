@@ -61,6 +61,7 @@ func Gen_Used_Ti(
     var    Start_Indx    int
     var    Interv_Count  int
     var    Need_Used     int
+    var    High_Slot     int
 
 
     // TimeAddDayMin  := json_go.Base.TimeAddDayMin
@@ -119,9 +120,12 @@ func Gen_Used_Ti(
 
       //odu.Owdaydskey.CnCtNbDs  = dst.Dstikey.CnCtNbDs
 
+        All_Used      = L.Random(1,10)
+        Need_Used     = L.Random(0,5)
 
-        All_Used      = L.Random(0,3)
+        High_Slot     = L.Random(0,3)
         New_Free_Slot = L.Random(2,7)
+        All_Used      = L.Random(1,5)
         Start_Indx    = L.Random(0,11)
         Interv_Count  = L.Random(2,12)
         Need_Used     = L.Random(0,5)
@@ -155,23 +159,27 @@ func Gen_Used_Ti(
 
         inxArr = bti.Base_ti_val.Index
         for h := 0; h < Time_Interval_Counter; h++ {
-            //Slot      = 1
+
             if All_Used == 1 {
-                inxArr[h] = 6
+                inxArr[h] = 0
             } else { // if All_Used
+                if High_Slot == 1 {
+                    inxArr[h] = 6
+                } else { // if High_Slot
 
-                if Start_Indx <= h && Start_Indx+Interv_Count >= h {
-                //if Start_Indx <= h {
-                    inxArr[h] = New_Free_Slot
-                    //p(h,Start_Indx,Start_Indx+Interv_Count,"inxArr[h] =", inxArr[h])
-                } //if Start_Indx 
+                    if Start_Indx <= h && Start_Indx+Interv_Count >= h {
+                    //if Start_Indx <= h {
+                        inxArr[h] = New_Free_Slot
+                        //p(h,Start_Indx,Start_Indx+Interv_Count,"inxArr[h] =", inxArr[h])
+                    } //if Start_Indx 
+                } // if High_Slot
+
+                Slot = inxArr[h]
+                slots,slot_price,err := Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
+                Total_Slot +=  slots
+                Total_Cost +=  slot_price
+
             } // if All_Used
-
-            Slot = inxArr[h]
-            slots,slot_price,err := Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
-            Total_Slot +=  slots
-            Total_Cost +=  slot_price
-
         } // for h := 0; h < diff_days; h++ 
 
         bti.Base_ti_val.Index      = inxArr 
