@@ -131,8 +131,8 @@ func Gen_Ds_Ti2(
             0   , 
             time.UTC,
             )
-        s := t.Add(time.Hour * time.Duration(TimeAddDayMin)*24)
-        e := t.Add(time.Hour * time.Duration(TimeAddDayMax)*24)
+        s := t.Add(time.Hour * time.Duration(TimeAddDayMin-1)*24)
+        e := t.Add(time.Hour * time.Duration(TimeAddDayMax+1)*24)
   
         //dst.Ds_ti_key.CnCtNbDs =  Ds.CnCtNbDs
         bti.Base_ti_key.CnCtNbDs =  Ds.CnCtNbDs

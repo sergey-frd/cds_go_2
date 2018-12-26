@@ -215,7 +215,7 @@ func main() {
         //data["Ow_UmNbDs"]   = make(map[string]string)
         //data["Ow_UmNbDsTi"] = make(map[string]string)
         //data["Payd_Slots"]  = make(map[string]string)
-        data["Free_Slots"]  = make(map[string]string)
+        //data["Free_Slots"]  = make(map[string]string)
         //data["Ds_Ti"]       = make(map[string]string)
         data["Base_Ti"]     = make(map[string]string)
         data["Um_Ds"]       = make(map[string]string)
@@ -304,23 +304,23 @@ func main() {
         //err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  ); __err_panic(err)      
         //err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
         //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
-        err = L.LoadDict2(byteValues, data, "Free_Slots"  ); __err_panic(err)     
+        //err = L.LoadDict2(byteValues, data, "Free_Slots"  ); __err_panic(err)     
         err = L.LoadDict2(    byteValues, data, "Base_Ti");     __err_panic(err)
         err = L.LoadDict2(    byteValues, data, "Um_Ds");     __err_panic(err)
 
 
 
         TotalDict := make(map[string]map[string]float64) 
-
-        data["Paid_Slots"]  = make(map[string]string)
-
-        //TotalDict["Ow_Day"]    = make(map[string]float64)
-        TotalDict["Ow_Day_Ds"]  = make(map[string]float64)
-        TotalDict["Sum_Ow_Ds"]  = make(map[string]float64)
-        TotalDict["Paid_Ow_Ds"] = make(map[string]float64)
-
-        err = I.Init_Um(byteValues,data,TotalDict,);  __err_panic(err)
-        err = L.Save_Data_Map(byteValues, "Paid_Slots"  , data ); __err_panic(err)
+        // 
+        // data["Paid_Slots"]  = make(map[string]string)
+        // 
+        // //TotalDict["Ow_Day"]    = make(map[string]float64)
+        // TotalDict["Ow_Day_Ds"]  = make(map[string]float64)
+        // TotalDict["Sum_Ow_Ds"]  = make(map[string]float64)
+        // TotalDict["Paid_Ow_Ds"] = make(map[string]float64)
+        // 
+        err = I.Init_Um2(json_go, byteValues,data,TotalDict,);  __err_panic(err)
+        // err = L.Save_Data_Map(byteValues, "Paid_Slots"  , data ); __err_panic(err)
 
     
 
