@@ -1,7 +1,7 @@
 package lib_init
 
 import (   
-    "fmt"
+//    "fmt"
     "sort"
     "encoding/json"
     "time"
@@ -109,14 +109,18 @@ func alloc_um_ds_day(
         if c.Before(t) { continue }
         if c.After(e)  { continue }
 
-        fmt.Println(nnn,"bti =", bti)
-        //Total_Slot    += bti.Base_ti_val.Total_Slot
-        //Total_Cost    += bti.Base_ti_val.Total_Cost
 
-        Media_Ds_Day_Cost := bti.Base_ti_val.Total_Cost / Cost_koef
-        fmt.Println(nnn,"Media_Ds_Day_Cost =", Media_Ds_Day_Cost)
+        err  := Alloc_Ti(json_go, data, um, ud, bti, Cost_koef,);    __err_panic(err)
 
-      //if nnn >= 3 { break }
+
+        // fmt.Println(nnn,"bti =", bti)
+        // //Total_Slot    += bti.Base_ti_val.Total_Slot
+        // //Total_Cost    += bti.Base_ti_val.Total_Cost
+        // 
+        // Media_Ds_Day_Cost := bti.Base_ti_val.Total_Cost / Cost_koef
+        // fmt.Println(nnn,"Media_Ds_Day_Cost =", Media_Ds_Day_Cost)
+
+      //if nnn >= 1 { break }
 
     } // for , k := range keys 
 

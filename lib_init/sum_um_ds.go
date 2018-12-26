@@ -139,9 +139,6 @@ func sum_Um_Ds(byteValues  []byte,
 
         if ps.UmNbDsTiSl_Key.NbDsTiSl_key.Index != 1 { continue }
 
-
-
-
         nnn  += 1
         od.Ow_day_key.Ymd_key.Year  = ps.UmNbDsTiSl_Key.NbDsTiSl_key.Year
         od.Ow_day_key.Ymd_key.Month = ps.UmNbDsTiSl_Key.NbDsTiSl_key.Month    

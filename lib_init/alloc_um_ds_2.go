@@ -85,7 +85,7 @@ func Alloc_Um_Ds2(
         // 
         // Um_Total_Cost += Total_Cost
 
-        fmt.Println(n,"Alloc_Um_Ds2 ud =", ud)
+        //fmt.Println(n,"Alloc_Um_Ds2 ud =", ud)
 
         Media_Cost,err = strconv.ParseFloat(um.UsMdVl.Media_Cost, 64)
         //p("Media_Cost =",Media_Cost)
