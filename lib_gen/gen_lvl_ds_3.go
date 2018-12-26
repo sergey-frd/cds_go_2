@@ -1,7 +1,7 @@
 package lib_gen
 
 import (   
-//    "fmt"
+    "fmt"
 
 //        "math"
 //        "strconv"
@@ -79,9 +79,8 @@ func Gen_Lvl_Ds3(byteValues  []byte,
 
 
         enc_Um_ds_key, err := json.Marshal(ud.Um_ds_key); __err_panic(err)
-        //data["Um_Ds"][string(enc_Um_ds_key)] = fmt.Sprintf("%f", 0)  
-        data["Um_Ds"][string(enc_Um_ds_key)] = "0.0" 
-
+        data["Um_Ds"][string(enc_Um_ds_key)] = fmt.Sprintf("%.6f", 0.0)  
+        //data["Um_Ds"][string(enc_Um_ds_key)] = "0.0" 
 
 
         //fmt.Println("      um.UsMdVl            =", um.UsMdVl)

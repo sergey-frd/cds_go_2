@@ -38,30 +38,7 @@ func Init_Um2(
     )  (err error) {
 
     var       tbl_name   string
-    //var       ps         S.Um_NbDsTiSl_STC
-    //var       od         S.Ow_Day_STC
-    //var       ods        S.Ow_Day_Ds_STC
-
-    //var total       float64
-
-    //var um          S.User_Media_STC
-
-    // var dsfs        S.NbDsTiSl_STC     // Free Ds Slots
-    // var err         error
-    // 
-    // var total       float64
-    // var count       int
-
-    //var dsfs  S.NbDsTiSl_STC     // Free Ds Slots
-    //var Ds          S.Digital_Signage_STC ,
-
-    //fmt.Println("Alloc_OwUmNbDsTiSl oundt =",oundt)
-    //fmt.Println("Alloc_OwUmNbDs ou.OwUm_Key.ID_Owner =",ou.OwUm_Key.ID_Owner)
-    //fmt.Println("Alloc_Ow um.UsMd =",um.UsMd)
-
-
-
-    var um          S.User_Media_STC
+    var um    S.User_Media_STC
 
     var u_keys []string
     tbl_name   = "User_Media"
@@ -87,7 +64,11 @@ func Init_Um2(
             fmt.Println("There was an error:", err)
         }
         fmt.Println("um =", um)
-        err = Init_Um_Ds2(json_go,byteValues,data,TotalDict,um,);  __err_panic(err)
+        Um_base_cost, err := Init_Um_Ds2(json_go,byteValues,data,TotalDict,um,);  __err_panic(err)
+        //fmt.Println("Um_base_cost =", Um_base_cost)
+
+        err = Alloc_Um_Ds2(json_go,byteValues,data,TotalDict,um,Um_base_cost,);  __err_panic(err)
+        //fmt.Println("Um_Total_Cost =", Um_Total_Cost)
 
         //---------------------------------------------------
 
