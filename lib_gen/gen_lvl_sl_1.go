@@ -103,7 +103,6 @@ func Gen_Lvl_Sl(byteValues  []byte,
         //p("          sl ps =", ps)
 
         enc_UmNbDsTiSl_Key, err := json.Marshal(ps.UmNbDsTiSl_Key); __err_panic(err)
-
         data["Free_Slots"][string(enc_UmNbDsTiSl_Key)] = fmt.Sprintf("%f", ps.Slot_Price)  
 
         //data["Ow_Um"]       = make(map[string]string)

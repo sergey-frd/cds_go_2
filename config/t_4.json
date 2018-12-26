@@ -18,10 +18,10 @@
         "CASE_INIT":           "nY",
         "CASE_UM_ALLOCATION": "nY",
         "comment": "-------------------------------------------",
-        "CASE_DB_PRINT_ALL":       "nY",
+        "CASE_DB_PRINT_ALL":       "Y",
         "FLAG_DB_PRINT_LEN_ONLY":   1,
         "comment": "-------------------------------------------",
-        "CASE_MAP_PRINT_ALL":       "nY",
+        "CASE_MAP_PRINT_ALL":       "Y",
         "FLAG_MAP_PRINT_LEN_ONLY":   1,
         "FLAG_MAP_PRINT":            1,
         "comment": "-------------------------------------------",
@@ -81,6 +81,7 @@
                     "Time_Interval",
                     "User",
                     "User_Media",
-                    "Base_Ti"
+                    "Base_Ti",
+                    "Um_Ds"
             ]
 }

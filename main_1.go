@@ -96,23 +96,23 @@ func main() {
     p("")
     p("")
 
-    var Um_nbds  S.Um_NbDs_STC
-    
-    Um_nbds.Slot_Price             = 12.34
-    Um_nbds.Um_nbds_key.Ds_keys = make([]S.Digital_Signage_KEY,10)
-    Um_nbds.Um_nbds_key.Ds_keys[1].ID_Digital_Signage      = "1"
-    Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage      = "5"
-    Um_nbds.Um_nbds_key.Ds_keys[0].ID_Owner                = "7"
-    Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.ID_Neighborhoods = "8"
-    Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.CnCt.ID_Country  = "56" 
-    Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.CnCt.ID_City     = "78" 
-    Um_nbds.Um_nbds_key.UsMd.ID_User                       = "178" 
-    Um_nbds.Um_nbds_key.UsMd.ID_Media                      = "234" 
-
-    p("Um_nbds =", Um_nbds)
-    p("Um_nbds.Um_nbds_key.Ds_keys =", Um_nbds.Um_nbds_key.Ds_keys)
-    p("Um_nbds.Um_nbds_key.Ds_keys[0] =", Um_nbds.Um_nbds_key.Ds_keys[0])
-    p("Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage =", Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage)
+    // var Um_nbds  S.Um_NbDs_STC
+    // 
+    // Um_nbds.Slot_Price             = 12.34
+    // Um_nbds.Um_nbds_key.Ds_keys = make([]S.Digital_Signage_KEY,10)
+    // Um_nbds.Um_nbds_key.Ds_keys[1].ID_Digital_Signage      = "1"
+    // Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage      = "5"
+    // Um_nbds.Um_nbds_key.Ds_keys[0].ID_Owner                = "7"
+    // Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.ID_Neighborhoods = "8"
+    // Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.CnCt.ID_Country  = "56" 
+    // Um_nbds.Um_nbds_key.Ds_keys[0].CnCtNb.CnCt.ID_City     = "78" 
+    // Um_nbds.Um_nbds_key.UsMd.ID_User                       = "178" 
+    // Um_nbds.Um_nbds_key.UsMd.ID_Media                      = "234" 
+    // 
+    // p("Um_nbds =", Um_nbds)
+    // p("Um_nbds.Um_nbds_key.Ds_keys =", Um_nbds.Um_nbds_key.Ds_keys)
+    // p("Um_nbds.Um_nbds_key.Ds_keys[0] =", Um_nbds.Um_nbds_key.Ds_keys[0])
+    // p("Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage =", Um_nbds.Um_nbds_key.Ds_keys[0].ID_Digital_Signage)
 
     //p("Um_nbds.Um_nbds_key.Ds_keys len=", len(Um_nbds.Um_nbds_key.Ds_keys))
     // return
@@ -218,17 +218,21 @@ func main() {
         data["Free_Slots"]  = make(map[string]string)
         //data["Ds_Ti"]       = make(map[string]string)
         data["Base_Ti"]     = make(map[string]string)
+        data["Um_Ds"]       = make(map[string]string)
 
         err = G.Gen_Ds_Ti2(json_go,data,);  __err_panic(err)
         //err = L.Save_Data_Map(byteValues, "Base_Ti"  , data ); __err_panic(err)
 
         err = G.Gen_Used_Ti(json_go,data,);  __err_panic(err)
         
-        err = L.Save_Data_Map(byteValues, "Base_Ti"  , data ); __err_panic(err)
+        err = L.Save_Data_Map(byteValues,       "Base_Ti"  , data ); __err_panic(err)
         err = L.LoadDict2(    byteValues, data, "Base_Ti");     __err_panic(err)
 
-        err = G.Gen_Lvl_Um2(byteValues,data,);  __err_panic(err)
-        // 
+        err = G.Gen_Lvl_Um3(byteValues,data,);  __err_panic(err)
+        
+        err = L.Save_Data_Map(byteValues,       "Um_Ds"  , data ); __err_panic(err)
+        err = L.LoadDict2(    byteValues, data, "Um_Ds");     __err_panic(err)
+
         // p(" Save_Data_Map Free_Slots")
         // //p("data[Free_Slots] =", data["Free_Slots"])
         // err = L.Save_Data_Map(byteValues, "Free_Slots"  , data ); __err_panic(err)
@@ -302,6 +306,7 @@ func main() {
         //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
         err = L.LoadDict2(byteValues, data, "Free_Slots"  ); __err_panic(err)     
         err = L.LoadDict2(    byteValues, data, "Base_Ti");     __err_panic(err)
+        err = L.LoadDict2(    byteValues, data, "Um_Ds");     __err_panic(err)
 
 
 

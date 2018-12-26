@@ -6,6 +6,17 @@ import (
 
 
 //.............................
+type Um_Ds_KEY   struct {
+    UsMd          User_Media_KEY
+    Ds_key        Digital_Signage_KEY
+}
+
+type Um_Ds_STC   struct {
+    Um_ds_key     Um_Ds_KEY
+    Slot_Price    float64
+}
+
+//.............................
 type Um_NbDs_KEY   struct {
     UsMd          User_Media_KEY
     Ds_keys[]     Digital_Signage_KEY
