@@ -36,6 +36,8 @@ func Get_Price_Slots(
     data          map[string]map[string]string,
     ) (
      int,
+     int,
+     int,
      float64,
      error) {
 
@@ -57,10 +59,11 @@ func Get_Price_Slots(
     price, _           := strconv.ParseFloat(data["Price"][strconv.Itoa(Slot)], 64)
     DS_Perc_Quality, _ := strconv.Atoi(Ds.DsVal.DS_Perc_Quality)
     TI_Price, _        := strconv.Atoi(Ti.TiVl.Price)
+    TI_People, _       := strconv.Atoi(Ti.TiVl.D_Sign_People)
     DS_TI_Price        := float64(TI_Price)*float64(DS_Perc_Quality)/100
     Slot_Price         := price*DS_TI_Price 
 
-    return slots,Slot_Price,err
+    return TI_People,TI_Price,slots,Slot_Price,err
 
 } // func Get_Price_Slots
 
@@ -160,7 +163,7 @@ func Gen_Ds_Ti2(
                 Slot      = 1
                 inxArr[h] = Slot
 
-                slots,slot_price,err := Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
+                _,_,slots,slot_price,err := Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
                 // ID_Time_Interval := strconv.Itoa(h)
                 // Ti.ID_Time_Interval = ID_Time_Interval
                 // ts_value:= data["Time_Interval"][ID_Time_Interval]
@@ -186,20 +189,6 @@ func Gen_Ds_Ti2(
             data["Base_Ti"][string(enc_Base_ti_key)]  = string(enc_Base_ti_val)
 
 
-            //p(nnn,"bti =", bti)
-
-            // for h := 0; h < Time_Interval_Counter; h++ {
-            // 
-            //     Ti.ID_Time_Interval = strconv.Itoa(h)
-            //     Ti.TiVl := data["Time_Interval"][Ti.ID_Time_Interval]
-            //     // Slots, _ := strconv.Atoi(Ti.TiVl.Slots)
-            //     // 
-            //     // n := 0
-            //     // for ii := 1; ii <= Slots; ii++ {
-            //     //     n++
-            //     // } // for ii := 1; ii <= Slots; ii++ 
-            // 
-            // } // for h := 0; h < diff_days; h++ 
 
             //!!!!!!!!!!!!!!!!!!!!
             //break

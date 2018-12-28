@@ -175,7 +175,7 @@ func Gen_Used_Ti(
                 } // if High_Slot
 
                 Slot = inxArr[h]
-                slots,slot_price,err := Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
+                _,_,slots,slot_price,err := Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
                 Total_Slot +=  slots
                 Total_Cost +=  slot_price
 

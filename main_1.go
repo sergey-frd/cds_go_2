@@ -24,6 +24,9 @@ import (
 
 )
 
+
+
+
 //---------------------------------------------------------------
 func __err_panic(err error) {
 	if err != nil {
@@ -32,61 +35,6 @@ func __err_panic(err error) {
 	}
 }
 
-// //---------------------------------------------------------------
-// func handlingCountryLine(sheet_Name string,
-//                          index_Row int,
-//                          index_Cells int, 
-//                          text_Cells string) (err error) {
-// 
-// 
-//     fmt.Printf("%s %d %d %s\n",
-//         sheet_Name,
-//         index_Row,
-//         index_Cells, 
-//         text_Cells)
-// 
-//     return 
-// }
-
-
-func ExampleValue_MarshalTo(byteValues []byte) {
-
-	//s := `{
-	//	"name": "John",
-	//	"items": [
-	//		{
-	//			"key": "foo",
-	//			"value": 123.456,
-	//			"arr": [1, "foo"]
-	//		},
-	//		{
-	//			"key": "bar",
-	//			"field": [3, 4, 5]
-	//		}
-	//	]
-	//}`
-
-	s := string(byteValues)
-	//s := byteValues
-
-	var p fastjson.Parser
-	v, err := p.Parse(s)
-	if err != nil {
-		log.Fatalf("cannot parse json: %s", err)
-	}
-
-	// Marshal items.0 into newly allocated buffer.
-	buf := v.Get("items", "0").MarshalTo(nil)
-	fmt.Printf("items.0 = %s\n", buf)
-
-	// Re-use buf for marshaling items.1.
-	buf = v.Get("items", "1").MarshalTo(buf[:0])
-	fmt.Printf("items.1 = %s\n", buf)
-
-	// Output:
-	// items.0 = {"key":"foo","value":123.456,"arr":[1,"foo"]}
-	// items.1 = {"key":"bar","field":[3,4,5]}
-}
 
 //---------------------------------------------------------------
 func main() {
@@ -95,6 +43,8 @@ func main() {
 
     p("")
     p("")
+
+
 
     // var Um_nbds  S.Um_NbDs_STC
     // 

@@ -4,7 +4,31 @@ import (
         "time"
 )
 
+//.............................
+type Time_Int_KEY   struct {
+    D_Sign_People   int
+    Slot_Price      float64
+}
 
+//.............................
+type Time_Int_STC   struct {
+    Time_int_key     Time_Int_KEY
+    ID_Time_Interval int
+    Price            int
+    Slots            int
+}
+
+//.............................
+type Time_Int_Str_STC   struct {
+    D_Sign_People    string
+    Slot_Price       string
+    ID_Time_Interval string
+    Price            string
+    Slots            string
+}
+
+//.............................
+//.............................
 //.............................
 type Um_Ds_KEY   struct {
     UsMd          User_Media_KEY

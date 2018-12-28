@@ -120,7 +120,7 @@ func alloc_um_ds_day(
         // Media_Ds_Day_Cost := bti.Base_ti_val.Total_Cost / Cost_koef
         // fmt.Println(nnn,"Media_Ds_Day_Cost =", Media_Ds_Day_Cost)
 
-      //if nnn >= 1 { break }
+        if nnn >= 1 { break }
 
     } // for , k := range keys 
 
