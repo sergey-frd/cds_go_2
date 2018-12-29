@@ -113,8 +113,9 @@ func Get_Price_Array(
 
         ta.Time_int_key.D_Sign_People    = TI_People
         ta.Time_int_key.Slot_Price       = slot_price
+        ta.Time_int_key.ID_Time_Interval = h
 
-        ta.ID_Time_Interval             = h
+        //ta.ID_Time_Interval             = h
         ta.Price                        = TI_Price
         ta.Slots                        = slots
 

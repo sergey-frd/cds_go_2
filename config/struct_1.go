@@ -6,14 +6,14 @@ import (
 
 //.............................
 type Time_Int_KEY   struct {
-    D_Sign_People   int
-    Slot_Price      float64
+    D_Sign_People    int
+    Slot_Price       float64
+    ID_Time_Interval int
 }
 
 //.............................
 type Time_Int_STC   struct {
     Time_int_key     Time_Int_KEY
-    ID_Time_Interval int
     Price            int
     Slots            int
 }

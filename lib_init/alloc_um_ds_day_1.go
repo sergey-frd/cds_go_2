@@ -110,7 +110,8 @@ func alloc_um_ds_day(
         if c.After(e)  { continue }
 
 
-        err  := Alloc_Ti(json_go, data, um, ud, bti, Cost_koef,);    __err_panic(err)
+        Media_Ds_Day_Cost := bti.Base_ti_val.Total_Cost / Cost_koef
+        err  := Alloc_Ti(json_go, data, um, ud, bti, Media_Ds_Day_Cost,);    __err_panic(err)
 
 
         // fmt.Println(nnn,"bti =", bti)
