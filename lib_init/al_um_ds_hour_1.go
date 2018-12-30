@@ -49,20 +49,25 @@ func Alloc_Ti(
     ud                 S.Um_Ds_STC,
     bti                S.Base_TI_STC,
     Media_Ds_Day_Cost  float64,
-    rs                 S.Result_STC, 
-    ) (S.Base_TI_STC,  S.Result_STC) {
+    ) (err    error) {
 
-    var err    error
-    var Ds     S.Digital_Signage_STC
-    //var ta     S.Time_Int_STC
+    //var err    error
+    var rs             S.Result_STC
+    var Ds             S.Digital_Signage_STC
+    //var ta           S.Time_Int_STC
     // var Slot        int
     // var Start_Hour  int 
     // var End_Hour    int 
-    var total       float64
+    var total          float64
     // var total_slot  int
 
-    //if bti.Base_ti_val.Total_Cost == 0 { return  err }
-    if bti.Base_ti_val.Total_Cost == 0 { return bti, rs  }
+    if bti.Base_ti_val.Total_Cost == 0 { return  err }
+    //if bti.Base_ti_val.Total_Cost == 0 { return bti, rs  }
+
+
+    rs.Result_key.UsMd   = um.UsMd 
+    rs.Result_key.Ds_key = ud.Um_ds_key.Ds_key 
+    //fmt.Println("rs =", rs)
 
     Time_Interval_Counter := json_go.Base.TimeIntervalCounter
     inxArr                := make([]int,             Time_Interval_Counter)
@@ -126,13 +131,15 @@ func Alloc_Ti(
         price, _            := strconv.Atoi(result[4])
         slots, _            := strconv.Atoi(result[5])
 
+        if bti.Base_ti_val.Index[ID_Time_Interval] == 0 {continue}
+
         // ta.Time_int_key.D_Sign_People     = TI_People
         // ta.Time_int_key.Slot_Price        = price
         // ta.Time_int_key.ID_Time_Interval  = ID_Time_Interval
 
         //fmt.Println(TI_People,ID_Time_Interval,Slot_Price,price,Ta_Map[ta.Time_int_key])      
         //fmt.Println(TI_People,ID_Time_Interval,Slot_Price,price)      
-        // fmt.Println(ta.Time_int_key)      
+        //fmt.Println(ta.Time_int_key)      
         //fmt.Println(Ta_Map[ta.Time_int_key])      
                  
 
@@ -140,6 +147,12 @@ func Alloc_Ti(
         if  total + Slot_Price < Media_Ds_Day_Cost {
 
             
+            if bti.Base_ti_val.Index[ID_Time_Interval] >= 6 {
+                bti.Base_ti_val.Index[ID_Time_Interval] = 0 
+            } else {
+                bti.Base_ti_val.Index[ID_Time_Interval]++
+            }
+
             rs.Result_val.Hours[ID_Time_Interval].ID_Time_Interval = ID_Time_Interval
             rs.Result_val.Hours[ID_Time_Interval].Paid        = Slot_Price
             rs.Result_val.Hours[ID_Time_Interval].Count_Media = 60
@@ -164,7 +177,8 @@ func Alloc_Ti(
     rs.Result_val.Paid   = total
     rs.Result_val.Delta  = rs.Result_val.Plan -rs.Result_val.Paid 
 
-    fmt.Println("rs =", rs)
+    fmt.Println("rs =" , rs)
+    fmt.Println("bti =", bti)
 
     // for h := 0; h < Time_Interval_Counter; h++ {
     // 
@@ -193,7 +207,7 @@ func Alloc_Ti(
     // 
     // } // for h := 0; h < diff_days; h++ 
 
-    return bti, rs
+    return err
 
 } // func allocow
 

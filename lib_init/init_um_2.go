@@ -68,10 +68,10 @@ func Init_Um2(
 
         //data["Results"][rs.Result_key] = [rs.Result_key]
 
-        rs,Um_base_cost, err := Init_Um_Ds2(json_go,byteValues,data,TotalDict,um,);  __err_panic(err)
+        Um_base_cost, err := Init_Um_Ds2(json_go,byteValues,data,TotalDict,um,);  __err_panic(err)
         //fmt.Println("Um_base_cost =", Um_base_cost)
 
-        err = Alloc_Um_Ds2(json_go,byteValues,data,TotalDict,um,Um_base_cost,rs,);  __err_panic(err)
+        err = Alloc_Um_Ds2(json_go,byteValues,data,TotalDict,um,Um_base_cost,);  __err_panic(err)
         //fmt.Println("Um_Total_Cost =", Um_Total_Cost)
 
         //---------------------------------------------------
