@@ -38,7 +38,6 @@ func Alloc_Um_Ds2(
 
 
 
-    //rs                  S.Result_STC
     p := fmt.Println
 
     //var err              error

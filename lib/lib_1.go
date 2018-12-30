@@ -341,7 +341,9 @@ func LoadDict(byteValues []byte,
 } // func LoadDict
 
 //----------------------------------------------
-func LoadDict2(byteValues []byte, data map[string]map[string]string, bucket_Name string) error {
+func LoadDict2(byteValues []byte, 
+    data map[string]map[string]string, 
+    bucket_Name string) error {
 
 
     dbFileName, err := GetDbName(byteValues);  __err_panic(err) 

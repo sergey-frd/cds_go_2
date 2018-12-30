@@ -19,7 +19,7 @@ import (
 //  "time"
 //  "math/rand"
 //
-//    L "cds_go_2/lib"
+    L "cds_go_2/lib"
     S "cds_go_2/config"
 )
 //---------------------------------------------------------------
@@ -66,18 +66,19 @@ func Init_Um2(
         fmt.Println("um =", um)
 
 
-        //data["Results"][rs.Result_key] = [rs.Result_key]
-
         Um_base_cost, err := Init_Um_Ds2(json_go,byteValues,data,TotalDict,um,);  __err_panic(err)
         //fmt.Println("Um_base_cost =", Um_base_cost)
 
         err = Alloc_Um_Ds2(json_go,byteValues,data,TotalDict,um,Um_base_cost,);  __err_panic(err)
         //fmt.Println("Um_Total_Cost =", Um_Total_Cost)
 
+        err = L.Save_Data_Map(byteValues,       "Base_Ti"  , data ); __err_panic(err)
+        err = L.LoadDict2(    byteValues, data, "Base_Ti");          __err_panic(err)
+
         //---------------------------------------------------
 
         //!!!!!!!!!!!!!!!!!!!!
-        break
+        //break
 
     } // for _, k := range keys  {
 

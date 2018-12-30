@@ -107,7 +107,7 @@ func Alloc_Ti(
     _, Ta_Lst, err := Get_Price_Array(Ds,json_go,data,inxArr,);  __err_panic(err)
     //fmt.Println("Alloc_Ti Ta_Map  ",Ta_Map)
     //fmt.Println("Alloc_Ti Ta_Map  len =",len(Ta_Map))
-    fmt.Println("Alloc_Ti Ta_Lst  len =",len(Ta_Lst))
+    //fmt.Println("Alloc_Ti Ta_Lst  len =",len(Ta_Lst))
     //fmt.Println("Alloc_Ti Ta_Lst      =",Ta_Lst)
 
 
@@ -132,17 +132,6 @@ func Alloc_Ti(
         slots, _            := strconv.Atoi(result[5])
 
         if bti.Base_ti_val.Index[ID_Time_Interval] == 0 {continue}
-
-        // ta.Time_int_key.D_Sign_People     = TI_People
-        // ta.Time_int_key.Slot_Price        = price
-        // ta.Time_int_key.ID_Time_Interval  = ID_Time_Interval
-
-        //fmt.Println(TI_People,ID_Time_Interval,Slot_Price,price,Ta_Map[ta.Time_int_key])      
-        //fmt.Println(TI_People,ID_Time_Interval,Slot_Price,price)      
-        //fmt.Println(ta.Time_int_key)      
-        //fmt.Println(Ta_Map[ta.Time_int_key])      
-                 
-
 
         if  total + Slot_Price < Media_Ds_Day_Cost {
 
@@ -175,37 +164,20 @@ func Alloc_Ti(
     fmt.Println("***** total =",total)
 
     rs.Result_val.Paid   = total
-    rs.Result_val.Delta  = rs.Result_val.Plan -rs.Result_val.Paid 
+    rs.Result_val.Delta  = rs.Result_val.Plan - rs.Result_val.Paid 
 
-    fmt.Println("rs =" , rs)
-    fmt.Println("bti =", bti)
+    //fmt.Println("rs =" , rs)
 
-    // for h := 0; h < Time_Interval_Counter; h++ {
-    // 
-    //     Slot = inxArr[h]
-    //     //fmt.Println("inxArr[h] =", inxArr[h])
-    //     //slots,slot_price,err := G.Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
-    //     _,_,_,slot_price,err := G.Get_Price_Slots(h,Slot,Ds,json_go,data,);  __err_panic(err)
-    // 
-    //     if slot_price == 0 {continue}
-    //     if Slot       == 0 {continue}
-    //     if Start_Hour == 0 {Start_Hour = h}
-    // 
-    //     fmt.Println("inxArr[h],slots,slot_price =",total_slot,total,h, inxArr[h],slot_price)
-    // 
-    //     if  total + slot_price < Media_Ds_Day_Cost {
-    //         total      += slot_price
-    //         //total_slot += slots
-    //         total_slot += 1
-    //     } else { //if  total + slot_price < Media_Ds_Day_Cost 
-    //         End_Hour    = h
-    //         fmt.Println("***** total =",total_slot, total,Start_Hour,End_Hour)
-    //         break
-    // 
-    //     } //if  total + slot_price < Media_Ds_Day_Cost 
-    // 
-    // 
-    // } // for h := 0; h < diff_days; h++ 
+
+    enc_rs_key, err := json.Marshal(rs.Result_key); __err_panic(err)
+    enc_rs_val, err := json.Marshal(rs.Result_val); __err_panic(err)
+    data["Results"][string(enc_rs_key)]  = string(enc_rs_val)
+
+    //fmt.Println("bti =", bti)
+
+    enc_Base_ti_key, err := json.Marshal(bti.Base_ti_key); __err_panic(err)
+    enc_Base_ti_val, err := json.Marshal(bti.Base_ti_val); __err_panic(err)
+    data["Base_Ti"][string(enc_Base_ti_key)]  = string(enc_Base_ti_val)
 
     return err
 
