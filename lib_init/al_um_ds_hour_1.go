@@ -107,8 +107,8 @@ func Alloc_Ti(
     _, Ta_Lst, err := Get_Price_Array(Ds,json_go,data,inxArr,);  __err_panic(err)
     //fmt.Println("Alloc_Ti Ta_Map  ",Ta_Map)
     //fmt.Println("Alloc_Ti Ta_Map  len =",len(Ta_Map))
-    //fmt.Println("Alloc_Ti Ta_Lst  len =",len(Ta_Lst))
-    //fmt.Println("Alloc_Ti Ta_Lst      =",Ta_Lst)
+    fmt.Println(" Ta_Lst      =",Ta_Lst)
+    fmt.Println(" Ta_Lst  len =",len(Ta_Lst))
 
 
     //sort.Sort(Ta_Lst)sort.Sort(sort.Reverse(fooAscending(s)))
@@ -122,8 +122,11 @@ func Alloc_Ti(
     n := 0
     for _, d := range Ta_Lst {
         n++
-    
         result := strings.Split(d, ",")
+        //fmt.Println(" result      =",result)
+        if len(result) == 0 {continue}
+
+
 
         TI_People, _        := strconv.Atoi(result[1])
         ID_Time_Interval, _ := strconv.Atoi(result[2])
