@@ -34,6 +34,7 @@ func Alloc_Um_Ds2(
     TotalDict    map[string]map[string]float64,
     um           S.User_Media_STC, 
     Um_base_cost float64,
+    rs           S.Result_STC, 
     )  (err error) {
 
     p := fmt.Println
@@ -95,7 +96,7 @@ func Alloc_Um_Ds2(
 
         Media_Ds_Cost := ud.Slot_Price / Cost_koef
         p("Media_Ds_Cost =",Media_Ds_Cost)
-        err  := alloc_um_ds_day(json_go, data, um, ud, Cost_koef);    __err_panic(err)
+        err  := alloc_um_ds_day(json_go, data, um, ud, Cost_koef,rs);    __err_panic(err)
 
 
         // if n >= 2 { break }

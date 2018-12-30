@@ -37,8 +37,8 @@ func Init_Um2(
     TotalDict       map[string]map[string]float64,
     )  (err error) {
 
-    var       tbl_name   string
-    var um    S.User_Media_STC
+    var tbl_name   string
+    var um         S.User_Media_STC
 
     var u_keys []string
     tbl_name   = "User_Media"
@@ -64,10 +64,14 @@ func Init_Um2(
             fmt.Println("There was an error:", err)
         }
         fmt.Println("um =", um)
-        Um_base_cost, err := Init_Um_Ds2(json_go,byteValues,data,TotalDict,um,);  __err_panic(err)
+
+
+        //data["Results"][rs.Result_key] = [rs.Result_key]
+
+        rs,Um_base_cost, err := Init_Um_Ds2(json_go,byteValues,data,TotalDict,um,);  __err_panic(err)
         //fmt.Println("Um_base_cost =", Um_base_cost)
 
-        err = Alloc_Um_Ds2(json_go,byteValues,data,TotalDict,um,Um_base_cost,);  __err_panic(err)
+        err = Alloc_Um_Ds2(json_go,byteValues,data,TotalDict,um,Um_base_cost,rs,);  __err_panic(err)
         //fmt.Println("Um_Total_Cost =", Um_Total_Cost)
 
         //---------------------------------------------------

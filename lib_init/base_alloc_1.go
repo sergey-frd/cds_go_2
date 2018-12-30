@@ -36,9 +36,11 @@ func base_alloc(
     data       map[string]map[string]string,
     um         S.User_Media_STC,
     ud         S.Um_Ds_STC,
+
     ) (int, float64, error) {
 
 
+    //rs         S.Result_STC,
     var      err error
 
     var Total_Slot    int
@@ -117,7 +119,7 @@ func base_alloc(
 
     } // for , k := range keys 
 
-    return  Total_Slot,Total_Cost,err
+    return  Total_Slot, Total_Cost, err
 
 } // func allocow
 

@@ -5,6 +5,39 @@ import (
 )
 
 //.............................
+type Result_DETAIL   struct {
+    ID_Time_Interval int
+    Paid             float64
+    Count_Media      int
+    People           int
+    Slots            int
+}
+
+type Result_VAL   struct {
+    Hours[]       Result_DETAIL
+    Plan          float64
+    Paid          float64
+    Delta         float64
+    Count_Media   int
+    People        int
+}
+
+type Result_KEY   struct {
+    UsMd      User_Media_KEY
+    Ds_key    Digital_Signage_KEY
+    Ymd_key   Ymd_KEY 
+}
+ 
+type Result_STC   struct {
+    Result_key   Result_KEY
+    Result_val   Result_VAL
+}
+
+
+//.............................
+//.............................
+//.............................
+
 type Time_Int_KEY   struct {
     D_Sign_People    int
     Slot_Price       float64
@@ -212,6 +245,7 @@ type User_Media_VAL   struct {
     Media_Name  string
     Media_Cost  string
     Media_Slots string
+    Done        int
     Start_time  time.Time
     End_time    time.Time
 

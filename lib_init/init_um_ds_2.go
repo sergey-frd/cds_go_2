@@ -33,13 +33,16 @@ func Init_Um_Ds2(
     data        map[string]map[string]string,
     TotalDict   map[string]map[string]float64,
     um          S.User_Media_STC,
-    )  (float64, error) {
+    )  (S.Result_STC, float64, error) {
 
     //p := fmt.Println
 
-    var      err error
+    var err              error
     var Um_Total_Cost    float64
-    var ud   S.Um_Ds_STC
+    var ud               S.Um_Ds_STC
+    var rs               S.Result_STC
+
+
 
     Um_Total_Cost = 0
     ////---------------------------------------------------
@@ -72,8 +75,14 @@ func Init_Um_Ds2(
     
         if ud.Um_ds_key.UsMd != um.UsMd { continue }
 
+        rs.Result_key.UsMd   = um.UsMd 
+        rs.Result_key.Ds_key = ud.Um_ds_key.Ds_key 
+        fmt.Println("rs =", rs)
+
+
         //Total_Slot,Total_Cost,err  := base_alloc(json_go, data, um, ud,);    __err_panic(err)
-        _,Total_Cost,err  := base_alloc(json_go, data, um, ud,);    __err_panic(err)
+        //_,Total_Cost,err  := base_alloc(json_go, data, um, ud, rs,);    __err_panic(err)
+        _,Total_Cost,err  := base_alloc(json_go, data, um, ud, );    __err_panic(err)
 
         // fmt.Println("Total_Slot =", Total_Slot)
         // fmt.Println("Total_Cost =", Total_Cost)
@@ -91,6 +100,6 @@ func Init_Um_Ds2(
 
 
 
-    return  Um_Total_Cost,err
+    return  rs,Um_Total_Cost,err
 
 } // func alloc_ow

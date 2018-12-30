@@ -247,6 +247,9 @@ func main() {
     if CASE_INIT == "Y" {
 
         p("********** CASE_INIT *********************")
+
+        data["Results"]       = make(map[string]string)
+
         err = L.LoadDict2(byteValues, data, "Digital_Signage");   __err_panic(err)
         err = L.LoadDict2(byteValues, data, "User_Media"     );   __err_panic(err)
 
@@ -299,8 +302,8 @@ func main() {
     // err = L.Print_Map_Table(json_go,data,"Neighborhoods");  __err_panic(err)
     // err = L.Print_Map_Table(json_go,data,"Digital_Signage");  __err_panic(err)
     // //err = L.Print_Map_Table(json_go,data,"Paid_Slots");  __err_panic(err)
-    // err = L.Print_Map_Table(json_go,data,"User_Media");  __err_panic(err)
     // err = L.Print_Map_Table(json_go,data,"Base_Ti");  __err_panic(err)
+    // err = L.Print_Map_Table(json_go,data,"User_Media");  __err_panic(err)
 
 
     p("***************************************************")

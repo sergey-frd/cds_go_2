@@ -49,8 +49,10 @@ func Alloc_Ti(
     ud                 S.Um_Ds_STC,
     bti                S.Base_TI_STC,
     Media_Ds_Day_Cost  float64,
-    ) (err error) {
+    rs                 S.Result_STC, 
+    ) (S.Base_TI_STC,  S.Result_STC) {
 
+    var err    error
     var Ds     S.Digital_Signage_STC
     //var ta     S.Time_Int_STC
     // var Slot        int
@@ -59,14 +61,24 @@ func Alloc_Ti(
     var total       float64
     // var total_slot  int
 
-    if bti.Base_ti_val.Total_Cost == 0 { return  err }
+    //if bti.Base_ti_val.Total_Cost == 0 { return  err }
+    if bti.Base_ti_val.Total_Cost == 0 { return bti, rs  }
 
-    Time_Interval_Counter  := json_go.Base.TimeIntervalCounter
-    inxArr := make([]int, Time_Interval_Counter)
+    Time_Interval_Counter := json_go.Base.TimeIntervalCounter
+    inxArr                := make([]int,             Time_Interval_Counter)
+    rs.Result_val.Hours    = make([]S.Result_DETAIL, Time_Interval_Counter)
+    rs.Result_key.Ymd_key  = bti.Base_ti_key.Ymd_key
+
+
+    //fmt.Println("rs =", rs)
+
 
     //fmt.Println("Alloc_Ti bti =", bti)
     //Media_Ds_Day_Cost := bti.Base_ti_val.Total_Cost / Cost_koef
     fmt.Println("Media_Ds_Day_Cost =", Media_Ds_Day_Cost)
+
+    rs.Result_val.Plan  = Media_Ds_Day_Cost
+
 
     Ds.CnCtNbDs = bti.Base_ti_key.CnCtNbDs
     ds_encoded, err := json.Marshal(Ds.CnCtNbDs)
@@ -74,7 +86,7 @@ func Alloc_Ti(
 
     ds_value:= data["Digital_Signage"][string(ds_encoded)]
     byt_dsv := []byte(ds_value)
-    err = json.Unmarshal(byt_dsv, &Ds.DsVal)
+    err      = json.Unmarshal(byt_dsv, &Ds.DsVal)
     __err_panic(err)
     //fmt.Println("Ds =", Ds)
 
@@ -87,9 +99,9 @@ func Alloc_Ti(
     inxArr = bti.Base_ti_val.Index
 
 
-    Ta_Map, Ta_Lst, err := Get_Price_Array(Ds,json_go,data,inxArr,);  __err_panic(err)
+    _, Ta_Lst, err := Get_Price_Array(Ds,json_go,data,inxArr,);  __err_panic(err)
     //fmt.Println("Alloc_Ti Ta_Map  ",Ta_Map)
-    fmt.Println("Alloc_Ti Ta_Map  len =",len(Ta_Map))
+    //fmt.Println("Alloc_Ti Ta_Map  len =",len(Ta_Map))
     fmt.Println("Alloc_Ti Ta_Lst  len =",len(Ta_Lst))
     //fmt.Println("Alloc_Ti Ta_Lst      =",Ta_Lst)
 
@@ -112,6 +124,7 @@ func Alloc_Ti(
         ID_Time_Interval, _ := strconv.Atoi(result[2])
         Slot_Price, _       := strconv.ParseFloat(result[3], 64)
         price, _            := strconv.Atoi(result[4])
+        slots, _            := strconv.Atoi(result[5])
 
         // ta.Time_int_key.D_Sign_People     = TI_People
         // ta.Time_int_key.Slot_Price        = price
@@ -125,7 +138,19 @@ func Alloc_Ti(
 
 
         if  total + Slot_Price < Media_Ds_Day_Cost {
-            fmt.Println(n,total, TI_People,ID_Time_Interval,Slot_Price,price)      
+
+            
+            rs.Result_val.Hours[ID_Time_Interval].ID_Time_Interval = ID_Time_Interval
+            rs.Result_val.Hours[ID_Time_Interval].Paid        = Slot_Price
+            rs.Result_val.Hours[ID_Time_Interval].Count_Media = 60
+            rs.Result_val.Hours[ID_Time_Interval].People      = TI_People
+            rs.Result_val.Hours[ID_Time_Interval].Slots       = slots
+
+            rs.Result_val.Count_Media   += rs.Result_val.Hours[ID_Time_Interval].Count_Media
+            rs.Result_val.People        += rs.Result_val.Hours[ID_Time_Interval].People
+
+
+            fmt.Println(total, TI_People,ID_Time_Interval,Slot_Price,price,slots)      
             total      += Slot_Price
             //total_slot += slots
         } //if  total + slot_price < Media_Ds_Day_Cost 
@@ -136,6 +161,10 @@ func Alloc_Ti(
     //fmt.Println("***** total =",total_slot, total,Start_Hour,End_Hour)
     fmt.Println("***** total =",total)
 
+    rs.Result_val.Paid   = total
+    rs.Result_val.Delta  = rs.Result_val.Plan -rs.Result_val.Paid 
+
+    fmt.Println("rs =", rs)
 
     // for h := 0; h < Time_Interval_Counter; h++ {
     // 
@@ -164,7 +193,7 @@ func Alloc_Ti(
     // 
     // } // for h := 0; h < diff_days; h++ 
 
-    return  err
+    return bti, rs
 
 } // func allocow
 

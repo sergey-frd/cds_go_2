@@ -1,7 +1,7 @@
 package lib_init
 
 import (   
-//    "fmt"
+   "fmt"
     "sort"
     "encoding/json"
     "time"
@@ -37,6 +37,7 @@ func alloc_um_ds_day(
     um         S.User_Media_STC,
     ud         S.Um_Ds_STC,
     Cost_koef  float64,
+    rs         S.Result_STC, 
     ) ( error) {
 
 
@@ -111,7 +112,10 @@ func alloc_um_ds_day(
 
 
         Media_Ds_Day_Cost := bti.Base_ti_val.Total_Cost / Cost_koef
-        err  := Alloc_Ti(json_go, data, um, ud, bti, Media_Ds_Day_Cost,);    __err_panic(err)
+        bti, rs := Alloc_Ti(json_go, data, um, ud, bti, Media_Ds_Day_Cost,rs)  
+        //__err_panic(err)
+        fmt.Println("bti =", bti)
+        fmt.Println("rs =", rs)
 
 
         // fmt.Println(nnn,"bti =", bti)
